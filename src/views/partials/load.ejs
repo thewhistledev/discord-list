@@ -39,14 +39,14 @@
 <% if(req.originalUrl.includes("/new")||req.originalUrl.includes("/edit")){ %>
 <link rel="stylesheet" href="/assets/css/<%= theme %>.css">
 <% }else{ %>
-<style id="styling"></style>
+<style id="styling" nonce="<%= cspNonce %>"></style>
 <% } %>
 <link rel="stylesheet" href="/assets/css/sa2.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 <link href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/code.css">
   <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
-  <script>
+  <script nonce="<%= cspNonce %>">
     let loading = $("#loading");
   loading.style.transition = "0.8s";
   loading.style.opacity = "0";

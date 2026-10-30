@@ -14,9 +14,9 @@ imglink: undefined
   <div class="container">
     <div class="columns">
      <div class="column is-2">
-      <figure class="image is-128x128" style="margin:auto;border-radius:50%">
-<img class="is-rounded" loading="lazy" src="<%= user.avatarUrl() %>" alt="<%= user.tag %> Avatar" onerror="this.onerror=null;this.src='/assets/img/bot/profile.svg';">
-<div class="status-<%= (user.status)?user.status:"offline" %>" style="width:30px;height:30px;"></div>
+      <figure class="image is-128x128" data-style="rounded-figure">
+<img class="is-rounded" loading="lazy" src="<%= user.avatarUrl() %>" alt="<%= user.tag %> Avatar" data-image-fallback="/assets/img/bot/profile.svg">
+<div class="status-<%= (user.status)?user.status:"offline" %>" data-style="status-size"></div>
 </figure>
      </div>
      <div class="column is-10">
@@ -26,7 +26,7 @@ imglink: undefined
     Here you can manage your Account, Bots, and Servers!
    </h4>
    <div class="field is-grouped is-grouped-multiline">
-   <div class="control" onclick="syncfun()">
+   <div class="control" data-action="syncfun">
     <div class="tags has-addons">
     <span class="tag is-outlined">Sync</span>
     <span class="tag is-success" id="sync">Data</span>
@@ -40,7 +40,7 @@ imglink: undefined
   </div>
   <% var thatdumbid = `_${Math.floor(Math.random()*1000)}captcha${Math.round(Math.random()*500)}` %>
     <% var earnfun = `_${Math.floor(Math.random()*1000)}earntheshit${Math.round(Math.random()*500)}` %>
-  <div class="control" onclick="<%= thatdumbid %>()">
+  <div class="control" data-action="earn" data-earn-function="<%= thatdumbid %>">
     <div class="tags has-addons">
     <span class="tag is-outlined" id="earn">Earn</span>
     <span class="tag is-success"> R$</span>
@@ -61,14 +61,14 @@ imglink: undefined
   <% for(const bot of bots){ %>
 <div class="bot-card">
 <figure class="image is-64x64 bc-avatar is-avatar">
-<img width="64" height="64" class="is-rounded" loading="lazy" src="<%= bot.avatarURL.replace(".png",".webp") %>" alt="<%= bot.username %> Avatar" onerror="this.onerror=null;this.src='/assets/img/bot/profile.svg';">
+<img width="64" height="64" class="is-rounded" loading="lazy" src="<%= bot.avatarURL.replace(".png",".webp") %>" alt="<%= bot.username %> Avatar" data-image-fallback="/assets/img/bot/profile.svg">
 <div class="status-<%= (bot.status)?bot.status:"online" %>"></div>
 </figure>
  <span class="username">
 <span><%= bot.username %></span>
 </span>
  <div class="bc-content has-background-dark" 
-style="background-image:url(<%= bot.bg || "" %>);background-size:cover">
+data-background="<%= bot.bg || '' %>" data-style="background-cover">
   <div class="info">
    <div class="control">
     <div class="tags has-addons">
@@ -84,11 +84,11 @@ style="background-image:url(<%= bot.bg || "" %>);background-size:cover">
     </div>
   </div>
    </div>
-   <div class="description has-background-dark is-curved" style="opacity: 0.9;border-radius: 5px;">
-    <p style="font-family: K2D;padding: 10px 10px;"><%= bot.short %></p>
+   <div class="description has-background-dark is-curved" data-style="card-description">
+    <p data-style="card-description-text"><%= bot.short %></p>
    </div>
    <div class="bc-buttons">
-<a href="/bots/<%= bot.id %>" class="box button is-info is-outlined" style=":hover{border-color:#9b84ee;}">
+<a href="/bots/<%= bot.id %>" class="box button is-info is-outlined">
 <span class="icon">
 <i class="fad fa-newspaper has-text-info"></i>
 </span>
@@ -109,14 +109,14 @@ style="background-image:url(<%= bot.bg || "" %>);background-size:cover">
   <% } %>
   <div class="bot-card">
 <figure class="image is-64x64 bc-avatar is-avatar">
-<img width="64" height="64" class="is-rounded" loading="lazy" src="/assets/img/bot/profile.svg" alt="Rovel Discord List Avatar" onerror="this.onerror=null;this.src='/assets/img/bot/profile.svg';">
+<img width="64" height="64" class="is-rounded" loading="lazy" src="/assets/img/bot/profile.svg" alt="Rovel Discord List Avatar" data-image-fallback="/assets/img/bot/profile.svg">
 <div class="status-<%= "online" %>"></div>
 </figure>
  <span class="username">
 <span>New Bot<span class="has-text-grey-light">#0000</span></span>
 </span>
  <div class="bc-content has-background-dark" 
-style="background-image:url(.svg);background-size:cover">
+data-style="placeholder-background">
   <div class="info">
    <div class="control">
     <div class="tags has-addons">
@@ -132,8 +132,8 @@ style="background-image:url(.svg);background-size:cover">
     </div>
   </div>
    </div>
-   <div class="description has-background-dark is-curved" style="opacity: 0.9;border-radius: 5px;">
-    <p style="font-family: K2D;padding: 10px 10px;">Import or Add your bot to RDL and get popular! We can't wait to see you become successful 😉</p>
+   <div class="description has-background-dark is-curved" data-style="card-description">
+    <p data-style="card-description-text">Import or Add your bot to RDL and get popular! We can't wait to see you become successful 😉</p>
    </div>
    <div class="bc-buttons">
 <a href="/dashboard/bots/new" class="box button is-info is-outlined">
@@ -153,7 +153,7 @@ style="background-image:url(.svg);background-size:cover">
 </div>
 </div>
   </div>
-   <script>
+   <script nonce="<%= cspNonce %>">
    var <%= thatdumbid %> = function(){
      var numb = Math.round(Math.random()*10);
      var dumb = Math.round(Math.random()*10);
@@ -197,7 +197,7 @@ style="background-image:url(.svg);background-size:cover">
   var syncfun = function(){
    var sc = document.getElementById("sync");
    sc.innerText="In Progress...";
-   fetch("/api/users/<%= user.id %>/sync").then(r=>r.json()).then(d=>{
+   fetch("/api/users/<%- scriptString(user.id) %>/sync").then(r=>r.json()).then(d=>{
     if(d.success){
      sc.innerText="Successful!";
      setTimeout(()=>{

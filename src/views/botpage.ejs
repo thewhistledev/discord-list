@@ -27,22 +27,22 @@ imglink: bot.bg
 <body>
  <%- include('partials/load', {theme}); %>
  <% if(!bot.added){ %>
-<script>
- Swal.fire({icon: "warning", title: "<%= bot.tag %> has not been listed!", text: "Please do not add this bot since it's waiting for approval. You can join our server to get informed about when <%= bot.username %> will be approved. Or just sit back here and scream!", footer: '<a href="/server">Ask us whether is bot is safe or not.</a>'});
+<script nonce="<%= cspNonce %>">
+ Swal.fire({icon: "warning", title: "<%- scriptString(bot.tag) %> has not been listed!", text: "Please do not add this bot since it's waiting for approval. You can join our server to get informed about when <%- scriptString(bot.username) %> will be approved. Or just sit back here and scream!", footer: '<a href="/server">Ask us whether is bot is safe or not.</a>'});
 </script>
 <% } %>
 <% if(bot.topgg){ %>
-  <script>
-   Swal.fire({icon: "info", title: "<%= bot.tag %> has not been added by their real devs!", text: "This bot is not really listed here. It's not saved in our database. It's shown directly from top.gg", footer: '<a href="/server">Discuss with us about this bot or about the DMCA policy.</a>'});
+  <script nonce="<%= cspNonce %>">
+   Swal.fire({icon: "info", title: "<%- scriptString(bot.tag) %> has not been added by their real devs!", text: "This bot is not really listed here. It's not saved in our database. It's shown directly from top.gg", footer: '<a href="/server">Discuss with us about this bot or about the DMCA policy.</a>'});
   </script>
   <% } %>
  <%- include('partials/navbar', {user}); %>
- <section class="hero" style="background-image: url(<%= bot.bg %>); background-size: cover;">
+ <section class="hero" data-background="<%= bot.bg || '' %>" data-style="background-cover">
   <div class="hero-body">
    <div class="container">
     <div class="columns">
      <div class="column is-2">
-      <img class="avatar image is-128x128 bot-img" style="margin: auto; border-radius: 50%;" src="<%= bot.avatarURL %>" alt="<%= bot.tag %> Avatar">
+      <img class="avatar image is-128x128 bot-img" data-style="avatar-rounded" src="<%= bot.avatarURL %>" alt="<%= bot.tag %> Avatar">
      </div>
      <div class="column is-10">
          <h1 class="title bot-name"><%= bot.username %>
@@ -112,20 +112,20 @@ imglink: bot.bg
   </div><br /><% if(bot.support){ %>
   <div class="control">
     <div class="tags has-addons">
-    <span class="tag is-dark" style="color:white;"><i class="bx bx-support"></i>&nbsp;Support Server</span><span class="tag is-primary"><a href="https://discord.gg/<%= bot.support %>" style="color:white;">Join</a></span>
+    <span class="tag is-dark" data-style="text-white"><i class="bx bx-support"></i>&nbsp;Support Server</span><span class="tag is-primary"><a href="https://discord.gg/<%= bot.support %>" data-style="text-white">Join</a></span>
     </div>
     </div><br /><% } %>
     <% if(bot.github){ %>
     <div class="control">
     <div class="tags has-addons">
-    <span class="tag is-dark" style="color:white;"><i class="bx bxl-github"></i>&nbsp;Github</span><span class="tag is-success"><a href="<%= bot.github %>" style="color:black;">Check Source Code</a></span>
+    <span class="tag is-dark" data-style="text-white"><i class="bx bxl-github"></i>&nbsp;Github</span><span class="tag is-success"><a href="<%= bot.github %>" data-style="text-black">Check Source Code</a></span>
     </div>
   </div>
     <% } %>
     <% if(bot.donate){ %>
     <div class="control">
     <div class="tags has-addons">
-    <span class="tag is-dark" style="color:white;"><i class="bx bx-money"></i>&nbsp;Donate</span><span class="tag is-warning"><a href="<%= bot.donate %>" style="color:black;">Money</a></span>
+    <span class="tag is-dark" data-style="text-white"><i class="bx bx-money"></i>&nbsp;Donate</span><span class="tag is-warning"><a href="<%= bot.donate %>" data-style="text-black">Money</a></span>
     </div>
   </div>
     <% } %>
@@ -139,20 +139,20 @@ imglink: bot.bg
  <div class="hero">
  <div class="hero-body">
    <% if(bot.card.title){ %>
-   <div class="container" style="overflow: hidden;">
+   <div class="container" data-style="overflow-hidden">
   <div class="section content">
    <div class="column is-one-half is-announcement">
-<div class="box has-background-dark" style="overflow: hidden; height: 100%;">
+<div class="box has-background-dark" data-style="full-height-hidden">
 <article class="media">
 <div class="media-left">
 <figure class="image is-64x64">
-<img width="64" height="64" class="is-rounded" loading="lazy" src="<%= bot.card.img %>" alt="<%= bot.card.title %>" onerror="this.onerror=null;this.src='/assets/img/bot/profile.svg';">
+<img width="64" height="64" class="is-rounded" loading="lazy" src="<%= bot.card.img %>" alt="<%= bot.card.title %>" data-image-fallback="/assets/img/bot/profile.svg">
 </figure>
 </div>
-<div style="overflow: hidden;" class="media-content">
+<div data-style="overflow-hidden" class="media-content">
 <div class="content">
 <p>
-<span class="is-size-4 title has-text-default is-mobile" style="font-family: discord;">
+<span class="is-size-4 title has-text-default is-mobile" data-style="font-discord">
 <span><%= bot.card.title %></span>
 </span>
 <br />
@@ -166,7 +166,7 @@ imglink: bot.bg
 </div>
 </div>
 <% } %>
- <div class="container" style="overflow: hidden;">
+ <div class="container" data-style="overflow-hidden">
   <div class="section content has-background-dark is-curved longdescription table-container">
    <%- bot.desc %>
    </div>

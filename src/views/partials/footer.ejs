@@ -1,8 +1,8 @@
 <footer class="footer">
   <% if(typeof alerts == "undefined"){alerts=undefined} %>
   <% if(alerts){ %>
-   <script>
-   var alerts = "<%= alerts %>";
+   <script nonce="<%= cspNonce %>">
+   var alerts = "<%- scriptString(alerts) %>";
    var text;
     if(alerts=="key_refreshed") text = "Your Discord OAuth2 key was updated successfully!";
     if(alerts=="logout") text = "We deleted your key from your cookies (Logged you out!) Because your key was invalid, or it was missing required permissions (scopes). Please log in again! 🙂";
@@ -12,11 +12,11 @@
    <% } %>
  <div class="content has-text-centered">
 <% if(isCopy()){ %>
-     <a href="https://github.com/rovelstars" style="color: white;">Rovel Stars © 2020-2022 All Rights Reserved.</a>
+     <a href="https://github.com/rovelstars" data-style="text-white">Rovel Stars © 2020-2022 All Rights Reserved.</a>
      <p class="has-text-grey-light">We are not affiliated with Discord in any way. All trademarks, copyrights and logos belong to their respective companies. Discord, Twitter And GitHub logos is owned by their respective companies.</p>
      <p class="has-text-grey-light">Have a nice day!</p>
     <script src="https://arc.io/widget.min.js#PxMeXGd9"></script>
-    <button id="rdl-widget" onclick="document.getElementById('rdl-widget').classList.add('scale-out-center');Swal.fire({title: 'Announcement', text: '<%= process.env.ANNOUNCE || 'There\'s no announcement currently.' %>', imageWidth: 100, imageHeight: 100, imageUrl: '/assets/img/announce.png', didRender: twemoji.parse}).then(()=>{document.getElementById('rdl-widget').classList.remove('scale-out-center')});">
+    <button id="rdl-widget" data-announcement="<%= process.env.ANNOUNCE || 'There is no announcement currently.' %>">
 			<img src="/assets/img/announce.png" /></button>
   <% }else{ %>
   <%= "Have a nice day!" %>
@@ -33,23 +33,23 @@
 </footer>
 <img class="footer-img" src="/assets/img/wavedown.svg" width="100%" height="auto"></img>
 <% if(preferEmoji=="joypixels"){ %>
-<script>
+<script nonce="<%= cspNonce %>">
  globalThis.emojiopts = function(icon){
   return "https://demos.joypixels.com/latest/assets/png/" + icon + ".png";
 };
 </script>
 <% } else if(preferEmoji=="openmoji"){ %>
-<script>
+<script nonce="<%= cspNonce %>">
 globalThis.emojiopts = function(icon) {
     return "https://gitcdn.xyz/repo/hfg-gmuend/openmoji/master/color/svg/"+icon.toUpperCase()+"";
 };
 </script>
 <% } else { %>
-<script>
+<script nonce="<%= cspNonce %>">
  globalThis.emojiopts = {folder: 'svg', ext: '.svg'}
 </script>
 <% } %>
-<script>
+<script nonce="<%= cspNonce %>">
 $$("table").forEach(e=>{e.classList.toggle("table", true)});
 var parts = document.getElementsByClassName("tt");
 var ttarr =[];

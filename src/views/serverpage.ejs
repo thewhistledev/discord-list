@@ -32,7 +32,7 @@ imglink: undefined
    <div class="container">
     <div class="columns">
      <div class="column is-2">
-      <img class="avatar image is-128x128" style="margin: auto; border-radius: 50%;" src="<%= server.iconURL %>" alt="<%= server.name %> Icon">
+      <img class="avatar image is-128x128" data-style="avatar-rounded" src="<%= server.iconURL %>" alt="<%= server.name %> Icon">
      </div>
      <div class="column is-10">
          <h1 class="title"><%= server.name %>
@@ -81,7 +81,7 @@ imglink: undefined
  <br />
  <div class="hero">
  <div class="hero-body">
- <div class="container" style="overflow: hidden;">
+ <div class="container" data-style="overflow-hidden">
   <div class="section content has-background-dark is-curved">
    <%- server.desc %>
    </div>

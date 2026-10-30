@@ -7,7 +7,7 @@ imglink: undefined
 }); %>
 </head>
 <body>
- <script>
+ <script nonce="<%= cspNonce %>">
   function importBot(){
    var botid = document.getElementById("botid");
    var list = document.getElementById("list");
@@ -59,7 +59,7 @@ And make sure to join our server if not done already, and also make sure your DM
 </section>
 <div class="container">
 <div class="section">
-<form onsubmit="return false;">
+<form data-prevent-submit>
  <p>Your Bot ID</p>
 <div class="field">
   <p class="control has-icons-left">
@@ -81,8 +81,8 @@ And make sure to join our server if not done already, and also make sure your DM
 </div>
    </form>
    <br /><br />
-   <div style="width: 100%;">
-     <button class="button is-success has-text-white" onclick="importBot()" id="submitbutton"><i class="bx bxs-download"></i>Import Bot</button>
+   <div data-style="full-width">
+     <button class="button is-success has-text-white" data-action="importBot" id="submitbutton"><i class="bx bxs-download"></i>Import Bot</button>
      </div>
  </div>
  </div>

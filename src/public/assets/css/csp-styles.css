@@ -1,0 +1,17 @@
+[data-style="avatar-rounded"] { margin: auto; border-radius: 50%; }
+[data-style="text-white"] { color: white; }
+[data-style="text-black"] { color: black; }
+[data-style="overflow-hidden"] { overflow: hidden; }
+[data-style="full-height-hidden"] { overflow: hidden; height: 100%; }
+[data-style="font-discord"] { font-family: discord; }
+[data-style="card-description"] { opacity: 0.9; border-radius: 5px; }
+[data-style="card-description-text"] { font-family: K2D; padding: 10px 10px; }
+[data-style="full-width"] { width: 100%; }
+[data-style="rounded-figure"] { margin: auto; border-radius: 50%; }
+[data-style="status-size"] { width: 30px; height: 30px; }
+[data-style="placeholder-background"] { background-image: url(.svg); background-size: cover; }
+[data-style="discord-color"] { color: #5865F2; }
+[data-style="background-cover"] { background-size: cover; }
+[data-style="static-logo"] { padding: 5px; width: 128px; height: 128px; }
+.nanobar { width: 100%; height: 4px; z-index: 9999; top: 0; }
+.bar { width: 0; height: 100%; transition: height .3s; background: #fff; }

@@ -41,7 +41,7 @@ And make sure to join our server if not done already, and also make sure your DM
 </section>
 <div class="container">
 <div class="section">
-<form onsubmit="return false;">
+<form data-prevent-submit>
 <h1 class="is-size-3 has-text-default">
 General Information
 </h1>
@@ -83,7 +83,7 @@ General Information
   <p>Long Description</p>
   <p>
    <div class="desc-live">
-   <textarea style="width:100%;" class="textarea" name="botdesc" id="botdesc" placeholder="Supports markdown, html, css styles and iframe. Javascript not supported."></textarea>
+   <textarea data-style="full-width" class="textarea" name="botdesc" id="botdesc" placeholder="Supports Markdown and HTML. Inline CSS and JavaScript are not supported."></textarea>
    </div>
   <br />
   <p>Background Image</p>
@@ -150,7 +150,7 @@ General Information
 </form>
 <br />
 <div class="has-text-centered">
- <button class="button is-success has-text-white" onclick="addBot()" id="submitbutton">Add Bot</button>
+ <button class="button is-success has-text-white" data-action="addBot" id="submitbutton">Add Bot</button>
 </div>
 <br />
 <div class="preview">
@@ -159,7 +159,7 @@ General Information
    <div class="container">
     <div class="columns">
      <div class="column is-2">
-      <img class="avatar image is-128x128 bot-img" id="bot-avatar" style="margin: auto; border-radius: 50%;" src="https://discord.rovelstars.com/assets/img/bot/profile.svg" alt="bot Avatar">
+      <img class="avatar image is-128x128 bot-img" id="bot-avatar" data-style="avatar-rounded" src="https://discord.rovelstars.com/assets/img/bot/profile.svg" alt="bot Avatar">
      </div>
      <div class="column is-10">
          <h1 class="title bot-name" id="bot-username">Sample Bot
@@ -201,26 +201,26 @@ General Information
   </div><br />
   <div class="control">
     <div class="tags has-addons">
-    <span class="tag is-dark" style="color:white;"><i class="bx bx-support"></i>&nbsp;Support Server</span><span class="tag is-primary">
-    <a id="bot-support" href="" style="color:white;">Join</a></span></div>
+    <span class="tag is-dark" data-style="text-white"><i class="bx bx-support"></i>&nbsp;Support Server</span><span class="tag is-primary">
+    <a id="bot-support" href="" data-style="text-white">Join</a></span></div>
     </div><br />
     <div class="control">
     <div class="tags has-addons">
-    <span class="tag is-dark" style="color:white;"><i class="bx bxl-github"></i>&nbsp;Github</span><span class="tag is-success">
-    <a id="bot-github" href="" style="color:black;">Check Source Code</a></span>
+    <span class="tag is-dark" data-style="text-white"><i class="bx bxl-github"></i>&nbsp;Github</span><span class="tag is-success">
+    <a id="bot-github" href="" data-style="text-black">Check Source Code</a></span>
     </div>
   </div><br />
   <div class="control">
     <div class="tags has-addons">
-    <span class="tag is-dark" style="color:white;"><i class="bx bx-money"></i>&nbsp;Donate</span><span class="tag is-warning">
-    <a id="bot-donate" href="" style="color:black;">Money</a></span>
+    <span class="tag is-dark" data-style="text-white"><i class="bx bx-money"></i>&nbsp;Donate</span><span class="tag is-warning">
+    <a id="bot-donate" href="" data-style="text-black">Money</a></span>
     </div>
   </div><br />
   </div>
   </div>
   </div>
  <br />
- <div class="container" style="overflow: hidden;">
+ <div class="container" data-style="overflow-hidden">
   <div class="section content has-background-dark is-curved longdescription table-container" id="livedesc">
    Bot Description
   </div>
@@ -230,7 +230,7 @@ General Information
 </div>
 </div>
 </div>
-<script>
+<script nonce="<%= cspNonce %>">
 var botdesc = document.getElementById("botdesc");
 var visualizer = document.getElementById("livedesc");
 var botid = document.getElementById("botid");

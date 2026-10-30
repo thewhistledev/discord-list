@@ -1,18 +1,6 @@
 (function (root) {
   "use strict";
-  var css =
-    ".nanobar{width:100%;height:4px;z-index:9999;top:0}.bar{width:0;height:100%;transition:height .3s;background:#fff}";
-  function addCss() {
-    var s = document.getElementById("nanobarcss");
-    if (s === null) {
-      s = document.createElement("style");
-      s.type = "text/css";
-      s.id = "nanobarcss";
-      document.head.insertBefore(s, document.head.firstChild);
-      if (!s.styleSheet) return s.appendChild(document.createTextNode(css));
-      s.styleSheet.cssText = css;
-    }
-  }
+  function addCss() {}
   function addClass(el, cls) {
     if (el.classList) el.classList.add(cls);
     else el.className += " " + cls;

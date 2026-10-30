@@ -70,7 +70,7 @@ function getMessage(data) {
         <div class="description">${data.embed.description}</div>
         ${
           data.embed.image && !data.embed.video
-            ? `<img src="${data.embed.image}" onerror="this.onerror=null;this.hidden = true">`
+            ? `<img src="${data.embed.image}" data-image-hide-on-error>`
             : ""
         }
       </div>`

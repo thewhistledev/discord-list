@@ -45,7 +45,7 @@
        </div>
           <hr class="navbar-divider">
           <a class="navbar-item" href="/server">
-            <span class="icon" style="color: #5865F2;"><i class="fab fa-discord"></i></span><span class="tt">Join Server</span>
+            <span class="icon" data-style="discord-color"><i class="fab fa-discord"></i></span><span class="tt">Join Server</span>
           </a>
           <a class="navbar-item" href="https://github.com/rovelstars/rovel-discord-list">
            <span class="icon"><i class="fab fa-github"></i></span><span class="tt">Source Code</span>
@@ -53,7 +53,7 @@
           <div class="navbar-item">
         <div class="buttons">
          <% if(!user){ %>
-          <script>
+          <script nonce="<%= cspNonce %>">
             function loginButton(){
     Swal.fire({
       title:"Choose Scopes",
@@ -77,12 +77,12 @@
     })
   }
           </script>
-          <a class="button is-success" href="#" onclick="loginButton()" id="login-link">
+          <a class="button is-success" href="#" data-action="loginButton" id="login-link">
             <span class="icon"><i class="fad fa-sign-in-alt"></i></span><span class="tt">Login</span></a>
             <% } else { %>
               <a class="button is-danger" href="/logout" id="logout-link">
             <span class="icon"><i class="fad fa-sign-out-alt"></i></span><span class="tt">Logout</span></a>
-             <a class="button is-info" style="color: #ffffff;" href="/dashboard">
+             <a class="button is-info" data-style="text-white" href="/dashboard">
               <span class="icon"><i class="fad fa-tachometer-alt-fast"></i></span><span class="tt">Dashboard</span>
              </a>
           <% } %>

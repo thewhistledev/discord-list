@@ -1,13 +1,13 @@
 <div class="bot-card">
 <figure class="image is-64x64 bc-avatar is-avatar">
-<img width="64" height="64" class="is-rounded" loading="lazy" src="<%= bot.avatarURL.replace(".png",".webp") %>" alt="<%= bot.username %> Avatar" onerror="this.onerror=null;this.src='/assets/img/bot/profile.svg';">
+<img width="64" height="64" class="is-rounded" loading="lazy" src="<%= bot.avatarURL.replace(".png",".webp") %>" alt="<%= bot.username %> Avatar" data-image-fallback="/assets/img/bot/profile.svg">
 <div class="status-<%= (bot.status)?bot.status:"online" %>"></div>
 </figure>
  <span class="username">
 <span><%= bot.username %></span>
 </span>
  <div class="bc-content has-background-dark" 
-style="background-image:url(<%= bot.bg || "" %>);background-size:cover">
+data-background="<%= bot.bg || '' %>" data-style="background-cover">
   <div class="info">
    <div class="control">
     <div class="tags has-addons">
@@ -23,11 +23,11 @@ style="background-image:url(<%= bot.bg || "" %>);background-size:cover">
     </div>
   </div>
    </div>
-   <div class="description has-background-dark is-curved" style="opacity: 0.9;border-radius: 5px;">
-    <p style="font-family: K2D;padding: 10px 10px;"><%= bot.short %></p>
+   <div class="description has-background-dark is-curved" data-style="card-description">
+    <p data-style="card-description-text"><%= bot.short %></p>
    </div>
    <div class="bc-buttons">
-<a href="/bots/<%= bot.id %>" class="box button is-info is-outlined" style=":hover{border-color:#9b84ee;}">
+<a href="/bots/<%= bot.id %>" class="box button is-info is-outlined">
 <span class="icon">
 <i class="fad fa-newspaper has-text-info"></i>
 </span>

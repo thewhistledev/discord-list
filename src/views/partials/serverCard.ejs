@@ -1,20 +1,20 @@
 <div class="bot-card">
     <figure class="image is-64x64 bc-avatar is-avatar">
-    <img width="64" height="64" class="is-rounded" loading="lazy" src="<%= server.iconURL %>" alt="<%= server.name %> Icon" onerror="this.onerror=null;this.src='/assets/img/bot/profile.svg';">
+    <img width="64" height="64" class="is-rounded" loading="lazy" src="<%= server.iconURL %>" alt="<%= server.name %> Icon" data-image-fallback="/assets/img/bot/profile.svg">
     </figure>
      <span class="username">
     <span><%= server.name %></span>
     </span>
      <div class="bc-content has-background-dark" 
-    style="background-image:url(.svg);background-size:cover">
+    data-style="placeholder-background">
     <br />
     <br />
     <br />
-       <div class="description has-background-dark is-curved" style="opacity: 0.9;border-radius: 5px;">
-        <p style="font-family: K2D;padding: 10px 10px;"><%= server.short %></p>
+       <div class="description has-background-dark is-curved" data-style="card-description">
+        <p data-style="card-description-text"><%= server.short %></p>
        </div>
        <div class="bc-buttons">
-    <a href="/servers/<%= server.id %>" class="box button is-info is-outlined" style=":hover{border-color:#9b84ee;}">
+    <a href="/servers/<%= server.id %>" class="box button is-info is-outlined">
     <span class="icon">
     <i class="fad fa-newspaper has-text-info"></i>
     </span>

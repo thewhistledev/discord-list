@@ -32,7 +32,7 @@ You're currently editing <%= bot.tag %> ( <%= bot.id %> )
 </section>
 <div class="container">
 <div class="section">
-<form onsubmit="return false;">
+<form data-prevent-submit>
 <h1 class="is-size-3 has-text-default">
 General Information
 </h1>
@@ -65,7 +65,7 @@ General Information
   <p>Long Description</p>
   <p>
    <div class="desc-live">
-   <textarea style="width:100%;" class="textarea" name="botdesc" id="botdesc" placeholder="Supports markdown, html, css styles and iframe. Javascript not supported."><%= bot.desc %></textarea>
+   <textarea data-style="full-width" class="textarea" name="botdesc" id="botdesc" placeholder="Supports Markdown and HTML. Inline CSS and JavaScript are not supported."><%= bot.desc %></textarea>
    </div>
      <br />
   <p>Webhook URL</p>
@@ -141,7 +141,7 @@ General Information
 </form>
 <br />
 <div class="has-text-centered">
- <button class="button is-success has-text-white" onclick="editBot()" id="submitbutton">Edit Bot</button>
+ <button class="button is-success has-text-white" data-action="editBot" id="submitbutton">Edit Bot</button>
 </div>
 <br />
 <div class="preview">
@@ -150,7 +150,7 @@ General Information
    <div class="container">
     <div class="columns">
      <div class="column is-2">
-      <img class="avatar image is-128x128 bot-img" id="bot-avatar" style="margin: auto; border-radius: 50%;" src="<%= bot.avatarURL %>" alt="<%= bot.tag %> Avatar">
+      <img class="avatar image is-128x128 bot-img" id="bot-avatar" data-style="avatar-rounded" src="<%= bot.avatarURL %>" alt="<%= bot.tag %> Avatar">
      </div>
      <div class="column is-10">
          <h1 class="title bot-name" id="bot-username"><%= bot.username %>
@@ -192,26 +192,26 @@ General Information
   </div><br />
   <div class="control">
     <div class="tags has-addons">
-    <span class="tag is-dark" style="color:white;"><i class="bx bx-support"></i>&nbsp;Support Server</span><span class="tag is-primary">
-    <a id="bot-support" href="" style="color:white;">Join</a></span></div>
+    <span class="tag is-dark" data-style="text-white"><i class="bx bx-support"></i>&nbsp;Support Server</span><span class="tag is-primary">
+    <a id="bot-support" href="" data-style="text-white">Join</a></span></div>
     </div><br />
     <div class="control">
     <div class="tags has-addons">
-    <span class="tag is-dark" style="color:white;"><i class="bx bxl-github"></i>&nbsp;Github</span><span class="tag is-success">
-    <a id="bot-github" href="" style="color:black;">Check Source Code</a></span>
+    <span class="tag is-dark" data-style="text-white"><i class="bx bxl-github"></i>&nbsp;Github</span><span class="tag is-success">
+    <a id="bot-github" href="" data-style="text-black">Check Source Code</a></span>
     </div>
   </div><br />
   <div class="control">
     <div class="tags has-addons">
-    <span class="tag is-dark" style="color:white;"><i class="bx bx-money"></i>&nbsp;Donate</span><span class="tag is-warning">
-    <a id="bot-donate" href="" style="color:black;">Money</a></span>
+    <span class="tag is-dark" data-style="text-white"><i class="bx bx-money"></i>&nbsp;Donate</span><span class="tag is-warning">
+    <a id="bot-donate" href="" data-style="text-black">Money</a></span>
     </div>
   </div><br />
   </div>
   </div>
   </div>
  <br />
- <div class="container" style="overflow: hidden;">
+ <div class="container" data-style="overflow-hidden">
   <div class="section content has-background-dark is-curved longdescription table-container" id="livedesc">
    Bot Description
   </div>
@@ -221,11 +221,11 @@ General Information
 </div>
 </div>
 </div>
-<script>
+<script nonce="<%= cspNonce %>">
 var botdesc = document.getElementById("botdesc");
 var visualizer = document.getElementById("livedesc");
 
-var owners=["<%= bot.mainowner %>"];
+var owners=["<%- scriptString(bot.mainowner) %>"];
 var botowners = document.getElementById("botowners");
 botowners.addEventListener("keyup", async(e)=>{
  var temp;
@@ -305,7 +305,7 @@ function editBot(){
    "content-type":"application/json"
   },
   body: JSON.stringify({
-  "id": "<%= bot.id %>",
+  "id": "<%- scriptString(bot.id) %>",
  "lib": botlib.value,
  "owners": owners,
  "short": botshort.value,
@@ -395,7 +395,7 @@ function editBot(){
    Swal.fire({
     icon: 'success',
     title: "Bot Edited!",
-    text: "Your bot <%= bot.tag %> was successfully edited!",
+    text: "Your bot <%- scriptString(bot.tag) %> was successfully edited!",
     footer: '<a href="/server">Why do I need to keep DMs open?</a>'
    }).then(()=>{
     window.location.pathname.replace(`/bots/${botid.value}`);

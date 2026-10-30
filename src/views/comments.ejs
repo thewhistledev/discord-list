@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="/assets/css/csp-styles.css">
+<script src="/assets/js/csp-events.js"></script>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <title>Rovel Discord List Comment Embed</title>
@@ -10,7 +12,7 @@
   <link rel="stylesheet" href="/comments/styles.css">
   <link rel="stylesheet" href="/comments/message.css">
     <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
-  <style>
+  <style nonce="<%= cspNonce %>">
    img.emoji{
     height: 1em;
     width: 1em;
@@ -28,8 +30,8 @@
     <input id="message" class="dinput" type="text" placeholder="Message">
     <button id="send">Send</button>
   </div>
-  <script>
-  let user= <%- (user)?JSON.stringify(user):null %>;
+  <script nonce="<%= cspNonce %>">
+  let user= <%- scriptJson(user || null) %>;
   var data;
   if (!window.top) {
     window = window.parent;
