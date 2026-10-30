@@ -48,6 +48,7 @@ globalThis.Search = require("@utils/search.js");
 globalThis.translate = require("translatte");
 const info = require("@utils/info.js");
 const express = require("express");
+const helmet = require("helmet");
 const Indent = require("min-indent");
 globalThis.indent = function (str) {
   if (!str.includes("\n")) {
@@ -68,6 +69,7 @@ globalThis.indent = function (str) {
 };
 
 const app = express();
+app.use(helmet());
 var compression = require("compression");
 var agents = require("@utils/agents.json");
 let client = require("@bot/index.js");
